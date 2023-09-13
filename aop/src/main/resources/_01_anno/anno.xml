@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="cat" class="_01_anno.Cat">
+        <!-- 使用Value去取代传统bean注入属性方式 -->
+    </bean>
+
+    <bean id="person" class="_01_anno.Person">
+        <!-- 使用Autowired替代配置文件 -->
+<!--        <property name="cat" ref="cat"/>-->
+    </bean>
+</beans>

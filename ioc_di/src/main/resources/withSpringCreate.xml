@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        1. 告诉spring，通过以下配置创建Student对象
+    -->
+    <bean id="student" class="_02withSpring.Student">
+        <!-- 1.1. 设置参数，设置的参数为常量参数 -->
+        <property name="name" value="张三"/>
+    </bean>
+
+    <!--
+        2. 设置bean对象属性
+    -->
+    <bean id="classmate" class="_02withSpring.ClassMate">
+        <!-- 2.1 name需要保证当前对象（ClassMate）存在setStudent()，ref为当前容器中存在的对象id值-->
+        <property name="student" ref="student"/>
+    </bean>
+
+    <!-- 3. 使用工厂方法创建对象 -->
+    <bean id="catFac" class="_02withSpring.factory.UseLowFactory"/>
+    <bean id="cat" factory-bean="catFac" factory-method="createCat"/>
+
+</beans>

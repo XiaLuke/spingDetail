@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="tx" class="_04_dynamicProxy._01jdkDynamic.tx.MyTransactionManager"/>
+
+    <bean id="departmentTransactionInvocationHandler" class="_04_dynamicProxy._01jdkDynamic.handler.TransactionInvocationHandler">
+        <property name="tx" ref="tx"/>
+        <property name="target">
+            <bean class="_04_dynamicProxy._01jdkDynamic.impl.DepartmentServiceImpl"/>
+        </property>
+    </bean>
+    <bean id="employeeTransactionInvocationHandler" class="_04_dynamicProxy._01jdkDynamic.handler.TransactionInvocationHandler">
+        <property name="tx" ref="tx"/>
+        <property name="target">
+            <bean class="_04_dynamicProxy._01jdkDynamic.impl.EmployeeServiceImpl"/>
+        </property>
+    </bean>
+
+    <!--
+        TransactionInvocationHandler transactionInvocationHandler = new TransactionInvocationHandler();
+        transactionInvocationHandler.setTx(new MyTransactionManager());
+        transactionInvocationHandler.setTarget(new DepartmentServiceImpl());
+
+
+        TransactionInvocationHandler transactionInvocationHandler = new TransactionInvocationHandler();
+        transactionInvocationHandler.setTx(new MyTransactionManager());
+        transactionInvocationHandler.setTarget(new EmployeeServiceImpl()); // 为哪个真实对象做代理
+    -->
+</beans>
